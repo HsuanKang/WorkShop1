@@ -34,16 +34,7 @@ function getIndexById(id) {
 
 $(document).ready(function () {
     var dataSource = new kendo.data.DataSource({
-        transport: {
-            read: 
-                function(e) {
-                    e.success(bookData);
-                },
-            destroy: function (e) {
-                sampleData.splice(getIndexById(e.data.BookId),1);
-                e.success();
-            }
-        },
+        data: bookData,
         pageSize: 20,
         schema: {
             model: {
@@ -80,4 +71,18 @@ $(document).ready(function () {
             { field: "BookTotal", title: "總計", width: "100px" }
         ]
     });
+
+
+    $("#dialog").kendoDialog({
+        width: 200,
+        height: 200,
+        title: "Dialog Title",
+        visible: false
+    }).data("kendoDialog");
+
+    $("#add_book").click(function () {
+        var dialog = $("#dialog").data("kendoDialog");
+        dialog.open();
+        });
+
 });
