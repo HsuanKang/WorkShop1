@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="./css/fontawesome.css">
 
     <title>圖書館</title>
+    <style>
+        .k-grid .k-grid-header .k-header {
+            white-space: normal;
+        }
+    </style>
 </head>
 
 <body>
@@ -68,6 +73,7 @@
                 </form>
             </div>
             <button type="button" id="add_book" class="k-button k-primary btn-add-book">新增書籍</button>
+
             <div id="book_grid">
             </div>
         </div>
@@ -78,6 +84,7 @@
     <script src="./js/kendo.all.min.js"></script>
     <script src="./js/uikit.min.js"></script>
     <script src="./js/script.js"></script>
+    <script src="./data/book-data.js"></script>
 </body>
 
 </html>
