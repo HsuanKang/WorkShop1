@@ -43,9 +43,9 @@ $(document).ready(function () {
                     BookId: { editable: false, nullable: true },
                     BookName: { validation: { required: true } },
                     //BookBoughtDate: { type: "date" },
-                    BookPrice: { type: "number", validation:{required:true,min:1}},
-                    BookAmount: { type: "number", validation:{required:true,min:1}},
-                    BookTotal: { type: "number", validation:{required:true,min:1}}
+                    BookPrice: { type: "number", validation: { required: true, min: 1 } },
+                    BookAmount: { type: "number", validation: { required: true, min: 1 } },
+                    BookTotal: { type: "number", validation: { required: true, min: 1 } }
                 }
             }
         }
@@ -59,30 +59,37 @@ $(document).ready(function () {
         sortable: true,
         columns: [
             { command: ["destroy"], title: "&nbsp;", width: "200px" },
-            { field: "BookId", title: "書籍編號", width: "65px"},
-            { field: "BookName", title: "書籍名稱", width: "250px"},
-            { field: "BookCategory", title: "書籍種類", width: "100px"},
-            { field: "BookAuthor", title: "作者", width: "120px"},
+            { field: "BookId", title: "書籍編號", width: "65px" },
+            { field: "BookName", title: "書籍名稱", width: "250px" },
+            { field: "BookCategory", title: "書籍種類", width: "100px" },
+            { field: "BookAuthor", title: "作者", width: "120px" },
             { field: "BookBoughtDate", title: "購買日期", width: "120px" },
             { field: "BookDeliveredDate", title: "送達狀態", width: "120px" },
-            { field: "BookPublisher", title: "發行公司", width: "120px"},
-            { field: "BookPrice", title: "金額", width: "80px"},
-            { field: "BookAmount", title: "數量", width: "80px"},
+            { field: "BookPublisher", title: "發行公司", width: "120px" },
+            { field: "BookPrice", title: "金額", width: "80px" },
+            { field: "BookAmount", title: "數量", width: "80px" },
             { field: "BookTotal", title: "總計", width: "100px" }
         ]
     });
 
 
-    $("#dialog").kendoDialog({
-        width: 200,
-        height: 200,
-        title: "Dialog Title",
-        visible: false
-    }).data("kendoDialog");
-
     $("#add_book").click(function () {
-        var dialog = $("#dialog").data("kendoDialog");
-        dialog.open();
+        $("#window").kendoWindow({
+            width: 550,
+            height: 650,
+            title: "新增書籍",
+            modal: true,
+            actions: ["Minimize", "Maximize", "Close"]
         });
+        var win = $("#window").data("kendoWindow");
+        win.center().open().center();
+    });
 
+    $("#searchBox").on("input", function (e) {
+        var listBox = $("#book_grid").data("kendoGrid");
+        var sarchString = $(this).val();
+
+        listBox.dataSource.filter({ field: "BookName", operator: "contains", value: sarchString },
+                                  { field: "BookAuthor", operator: "contains", value: sarchString });
+    });
 });
