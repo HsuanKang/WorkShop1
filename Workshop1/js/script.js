@@ -42,6 +42,7 @@ $(document).ready(function () {
                     BookId: { editable: false, nullable: true },
                     BookName: { validation: { required: true } },
                     BookBoughtDate: { type: "date" },
+                    BookDeliveredDate: { type: "date" },
                     BookPrice: { type: "number", validation: { required: true, min: 1 } },
                     BookAmount: { type: "number", validation: { required: true, min: 1 } },
                     BookTotal: { type: "number", validation: { required: true, min: 1 } }
@@ -81,12 +82,12 @@ $(document).ready(function () {
             { field: "BookName", title: "書籍名稱", width: "250px" },
             { field: "BookCategory", title: "書籍種類", width: "100px" },
             { field: "BookAuthor", title: "作者", width: "120px" },
-            { field: "BookBoughtDate", title: "購買日期", width: "120px" },
-            { field: "BookDeliveredDate", title: "送達狀態", width: "120px" },
+            { field: "BookBoughtDate", title: "購買日期", width: "120px", template: "#= kendo.toString(kendo.parseDate(BookBoughtDate, 'MM/dd/yyyy'), 'yyyy-MM-dd') #" },
+            { field: "BookDeliveredDate", title: "送達狀態", width: "120px", template: "#= BookDeliveredDate ? kendo.toString(new Date(BookDeliveredDate), 'yyyy-MM-dd') : '' #"},
             { field: "BookPublisher", title: "發行公司", width: "120px" },
-            { field: "BookPrice", title: "金額", width: "80px" },
-            { field: "BookAmount", title: "數量", width: "80px" },
-            { field: "BookTotal", title: "總計", width: "100px" }]
+            { field: "BookPrice", title: "金額", width: "80px", template: "#=kendo.format('{0:n0}', BookPrice)#"},
+            { field: "BookAmount", title: "數量", width: "80px", template: "#=kendo.format('{0:n0}', BookAmount)#"},
+            { field: "BookTotal", title: "總計", width: "100px", template: "#=kendo.format('{0:n0}', BookTotal)#"}]
     }).data("kendoGrid");
 
 
