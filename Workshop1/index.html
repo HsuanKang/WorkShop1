@@ -75,17 +75,29 @@
                 </div>
             </div>
 
-            <button type="button" id="add_book" class="k-button k-primary btn-add-book">新增書籍</button>
-            <input type='text' id='searchBox' class='k-textbox' placeholder="我想要找..."/>
+            <button type="button" id="add_book" class="k-button k-primary btn-add-book">新增書籍</button><br>
+            <div style="background-color:#0044BB">
+                <input type='text' id='searchBox' style="background-color:#003C9D;border-style:none" class='k-textbox' placeholder="我想要找..." />
+            </div>
             <div id="book_grid">
             </div>
+            <div id="delete_window"></div>
         </div>
     </main>
     <footer></footer>
+
+    <script type="text/x-kendo-template" id="windowTemplate">
+        確定刪除「
+        <strong>#= BookName #</strong> 」嗎？<br />
+        <button class="k-button" id="delete_yes">OK</button>
+        <button class="k-button" id="delete_no">CANCEL</button>
+    </script>
+
     <script type="text/javascript" src="data/book-data.js"></script>
     <script src="./js/jquery-2.1.4.min.js"></script>
     <script src="./js/kendo.all.min.js"></script>
     <script src="./js/uikit.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2018.2.620/js/cultures/kendo.culture.zh-CN.min.js"></script>
     <script src="./js/script.js"></script>
     <script src="./data/book-data.js"></script>
 </body>
