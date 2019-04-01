@@ -85,9 +85,9 @@ $(document).ready(function () {
             { field: "BookBoughtDate", title: "購買日期", width: "120px", template: "#= kendo.toString(kendo.parseDate(BookBoughtDate, 'MM/dd/yyyy'), 'yyyy-MM-dd') #" },
             { field: "BookDeliveredDate", title: "送達狀態", width: "120px", template: "#= BookDeliveredDate ? kendo.toString(new Date(BookDeliveredDate), 'yyyy-MM-dd') : '' #"},
             { field: "BookPublisher", title: "發行公司", width: "120px" },
-            { field: "BookPrice", title: "金額", width: "80px", template: "#=kendo.format('{0:n0}', BookPrice)#"},
-            { field: "BookAmount", title: "數量", width: "80px", template: "#=kendo.format('{0:n0}', BookAmount)#"},
-            { field: "BookTotal", title: "總計", width: "100px", template: "#=kendo.format('{0:n0}', BookTotal)#"}]
+            { field: "BookPrice", title: "金額", width: "80px", attributes: { "class": "right-align", "data-boo": "foo" }, template: "#=kendo.format('{0:n0}', BookPrice)#"},
+            { field: "BookAmount", title: "數量", width: "80px", attributes: { "class": "right-align", "data-boo": "foo" }, template: "#=kendo.format('{0:n0}', BookAmount)#"},
+            { field: "BookTotal", title: "總計", width: "100px", attributes: { "class": "right-align", "data-boo": "foo" }, template: "#=kendo.format('{0:n0}', BookTotal)#"}]
     }).data("kendoGrid");
 
 
