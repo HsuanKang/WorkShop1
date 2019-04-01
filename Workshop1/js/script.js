@@ -20,7 +20,7 @@ function loadBookData() {
 
 $(document).ready(function () {
     var windowTemplate = kendo.template($("#windowTemplate").html());
-    kendo.culture("zh-CN");
+    kendo.culture('zh-TW');
     var dataSource = new kendo.data.DataSource({
         data: bookData,
         pageSize: 20,
