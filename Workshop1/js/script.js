@@ -17,41 +17,40 @@ function loadBookData() {
     }
 }
 
-function setData() {
-    var Data = bookData;
-    localStorage["bookData"] = JSON.stringify(Data);
-}
+//function setData() {
+//    var Data = bookData;
+//    localStorage["bookData"] = JSON.stringify(Data);
+//}
 
 
 
 $(document).ready(function () {
-    console.log("555");
-    if (localStorage["bookData"] == undefined) {
-        console.log("222");
-        setData();
-    }
+    //if (localStorage["bookData"] == undefined) {
+    //    setData();
+    //}
+    loadBookData();
     var windowTemplate = kendo.template($("#windowTemplate").html());
     kendo.culture('zh-TW');
     var dataSource = new kendo.data.DataSource({
         data: bookData,
         pageSize: 20,
-        transport: {
-            read: function (options) {
-                var localData = JSON.parse(localStorage["bookData"]);
-                options.success(localData);
-            },
-            destroy: function (options) {
-                var localData = localStorage["bookData"];
-                for (var i = 0; i < localData.length; i++) {
-                    if (localData[i].BookId === options.data.BookId) {
-                        localData.splice(i, 1);
-                        break;
-                    }
-                }
-                localStorage["bookData"] = JSON.stringify(localData);
-                options.success(localData);
-            }
-        },
+        //transport: {
+        //    read: function (options) {
+        //        var localData = JSON.parse(localStorage["bookData"]);
+        //        options.success(localData);
+        //    },
+        //    destroy: function (options) {
+        //        var localData = localStorage["bookData"];
+        //        for (var i = 0; i < localData.length; i++) {
+        //            if (localData[i].BookId === options.data.BookId) {
+        //                localData.splice(i, 1);
+        //                break;
+        //            }
+        //        }
+        //        localStorage["bookData"] = JSON.stringify(localData);
+        //        options.success(localData);
+        //    }
+        //},
         schema: {
             model: {
                 id: "BookId",
@@ -69,7 +68,7 @@ $(document).ready(function () {
     });
 
 
-    $("#book_grid").kendoGrid({
+    var book_grid = $("#book_grid").kendoGrid({
         dataSource: dataSource,
         height: 500,
         pageable: true,
@@ -77,7 +76,7 @@ $(document).ready(function () {
         columns: [
             {
                 command: [{
-                    name: "delete", text: "刪除", click: function (e) {  //add a click event listener on the delete button
+                    name: "delete", text: "刪除", click: function (e) {
                         e.preventDefault(); //prevent page scroll reset
                         var tr = $(e.target).closest("tr"); //get the row for deletion
                         var data = this.dataItem(tr); //get the row data so it can be referred later
@@ -85,8 +84,8 @@ $(document).ready(function () {
                         window.center().open();
 
                         $("#delete_yes").click(function () {
-                            grid.dataSource.remove(data)  //prepare a "destroy" request
-                            grid.dataSource.sync()  //actually send the request (might be ommited if the autoSync option is enabled in the dataSource)
+                            book_grid.dataSource.remove(data)  //prepare a "destroy" request
+                            book_grid.dataSource.sync()  //actually send the request (might be ommited if the autoSync option is enabled in the dataSource)
                             window.close();
                         })
                         $("#delete_no").click(function () {
@@ -104,7 +103,8 @@ $(document).ready(function () {
             { field: "BookPublisher", title: "發行公司", width: "120px" },
             { field: "BookPrice", title: "金額", width: "80px", attributes: { "class": "right-align", "data-boo": "foo" }, template: "#=kendo.format('{0:n0}', BookPrice)#" },
             { field: "BookAmount", title: "數量", width: "80px", attributes: { "class": "right-align", "data-boo": "foo" }, template: "#=kendo.format('{0:n0}', BookAmount)#" },
-            { field: "BookTotal", title: "總計", width: "100px", attributes: { "class": "right-align", "data-boo": "foo" }, template: "#=kendo.format('{0:n0}', BookTotal)#" }]
+            { field: "BookTotal", title: "總計", width: "100px", attributes: { "class": "right-align", "data-boo": "foo" }, template: "#=kendo.format('{0:n0}', BookTotal)#" }],
+            //editable: "incell"
     }).data("kendoGrid");
 
 
