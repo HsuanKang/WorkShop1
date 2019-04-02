@@ -19,13 +19,14 @@ function loadBookData() {
 
 function setData() {
     var Data = bookData;
-    localStorage["grid_data"] = JSON.stringify(Data);
+    localStorage["bookData"] = JSON.stringify(Data);
 }
 
 
 
 $(document).ready(function () {
-    if (localStorage["grid_data"] == undefined) {
+    console.log("555");
+    if (localStorage["bookData"] == undefined) {
         console.log("222");
         setData();
     }
@@ -35,15 +36,19 @@ $(document).ready(function () {
         data: bookData,
         pageSize: 20,
         transport: {
+            read: function (options) {
+                var localData = JSON.parse(localStorage["bookData"]);
+                options.success(localData);
+            },
             destroy: function (options) {
-                var localData = localStorage["grid_data"];
+                var localData = localStorage["bookData"];
                 for (var i = 0; i < localData.length; i++) {
                     if (localData[i].BookId === options.data.BookId) {
                         localData.splice(i, 1);
                         break;
                     }
                 }
-                localStorage["grid_data"] = JSON.stringify(localData);
+                localStorage["bookData"] = JSON.stringify(localData);
                 options.success(localData);
             }
         },
