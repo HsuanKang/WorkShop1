@@ -22,6 +22,19 @@ $(document).ready(function () {
     var validator = $("#window").kendoValidator().data("kendoValidator");
     var windowTemplate = kendo.template($("#windowTemplate").html());
     kendo.culture('zh-TW');
+
+    $("#bought_datepicker").kendoDatePicker({
+        value: new Date(),
+        format: "yyyy-MM-dd",
+        culture: "zh-TW"
+    });
+
+    $("#delivered_datepicker").kendoDatePicker({
+        value: new Date(),
+        format: "yyyy-MM-dd",
+        culture: "zh-TW"
+    });
+
     var dataSource = new kendo.data.DataSource({
         data: bookData,
         pageSize: 20,
@@ -41,7 +54,7 @@ $(document).ready(function () {
         }
     });
 
-    $("#save_book").on("click", function () {
+    $("#save_book").on("click", function () { //必填
         if (validator.validate()) {
             save();
         }
