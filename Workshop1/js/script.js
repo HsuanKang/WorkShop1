@@ -24,16 +24,47 @@ $(document).ready(function () {
     kendo.culture('zh-TW');
 
     $("#bought_datepicker").kendoDatePicker({
+        onSelect: DatePicked,
         value: new Date(),
         format: "yyyy-MM-dd",
         culture: "zh-TW"
     });
 
     $("#delivered_datepicker").kendoDatePicker({
+        onSelect: DatePicked,
         value: new Date(),
         format: "yyyy-MM-dd",
         culture: "zh-TW"
     });
+
+    $("#book_category").kendoDropDownList({
+        dataTextField: "text",
+        dataValueField: "value",
+        dataSource: bookCategoryList,
+        index: 0,
+        change: onChange
+    });
+
+    function onChange() {
+        var value = $("#book_category").val();
+        $("#category")
+            .toggleClass("database", value == "database")
+            .toggleClass("internet", value == "internet")
+            .toggleClass("system", value == "system")
+            .toggleClass("home", value == "home")
+            .toggleClass("language", value == "language");
+    }
+
+    var DatePicked = function () {
+        var bought_datepicker = $("#bought_datepicker");
+        var delivered_datepicker = $("#delivered_datepicker");
+        var b_d = bought_datepicker.datepicker("getDate");
+        var d_d = delivered_datepicker.datepicker("getDate");
+        if (d_d < b_d) {
+            delivered_datepicker.datepicker("setDate", '');
+            alert("送達日期不可早於購買日期");
+        }
+    }
 
     var dataSource = new kendo.data.DataSource({
         data: bookData,

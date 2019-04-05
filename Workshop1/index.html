@@ -10,13 +10,38 @@
     <link rel="stylesheet" href="./css/uikit.min.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/fontawesome.css">
-    
-
 
     <title>圖書館</title>
     <style>
         .k-grid .k-grid-header .k-header {
             white-space: normal;
+        }
+
+        #category {
+            width: 600px;
+            height: 400px;
+            background-repeat: no-repeat;
+            background-color: transparent;
+        }
+        .database {
+            background-position: 0 0;
+            background-image: url(image/database.jpg);
+        }
+        .internet {
+            background-position: 0 -225px;
+            background-image: url(image/internet.jpg);
+        }
+        .system {
+            background-position: 0 -450px;
+            background-image: url(image/system.jpg);
+        }
+        .home {
+            background-position: 0 -675px;
+            background-image: url(image/home.jpg);
+        }
+        .language {
+            background-position: 0 -900px;
+            background-image: url(image/language.jpg);
         }
     </style>
 </head>
@@ -34,7 +59,7 @@
                     <form id="book_form">
                         <ul class="fieldlist">
                             <li>
-                                <img class="book-image" src="image/database.jpg" alt="">
+                                <div id="category" class="database"></div>
                             </li>
                             <li>
                                 <label class="required">圖書類別</label>
