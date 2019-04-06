@@ -23,26 +23,31 @@
             background-repeat: no-repeat;
             background-color: transparent;
         }
+
         .database {
             background-position: 0 0;
             background-size: contain;
             background-image: url(./image/database.jpg);
         }
+
         .internet {
             background-position: 0 -15px;
             background-size: contain;
             background-image: url(./image/internet.jpg);
         }
+
         .system {
             background-position: 0 -25px;
             background-size: contain;
             background-image: url(./image/system.jpg);
         }
+
         .home {
             background-position: 0 -35px;
             background-size: contain;
             background-image: url(./image/home.jpg);
         }
+
         .language {
             background-position: 0 -70px;
             background-size: contain;
@@ -88,15 +93,15 @@
                             </li>
                             <li>
                                 <label>金額</label>
-                                <input id="book_price" type="text" />
+                                <input id="book_price" type="text" value="" style="text-align:right" onkeyup="this.value=this.value.replace(/[^\d\,]/g,'')" onchange="this.value=numberWithCommas(this.value)" />
                             </li>
                             <li>
                                 <label>數量</label>
-                                <input id="book_amount" type="text" />
+                                <input id="book_amount" type="text" name="book_amount" style="text-align:right" onkeyup="this.value=this.value.replace(/[^\d\,]/g,'')" onchange="this.value=numberWithCommas(this.value)" />
                             </li>
                             <li>
                                 <span>
-                                    總計&nbsp;<span id="book_total">0</span> 元
+                                    總計&nbsp;<span id="book_total" name="book_total" style="text-align:right">0</span> 元
                                 </span>
                             </li>
                             <li class="uk-text-right">
@@ -126,6 +131,12 @@
         <button class="k-button" id="delete_no">CANCEL</button>
     </script>
 
+    <script>
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+    </script>
+
     <script type="text/javascript" src="data/book-data.js"></script>
     <script src="./js/jquery-2.1.4.min.js"></script>
     <script src="./js/kendo.all.min.js"></script>
@@ -134,7 +145,7 @@
     <script src="./js/script.js"></script>
     <script src="./data/book-data.js"></script>
     <script src="./js/kendo.culture.zh-TW.min.js"></script>
-    
+
 </body>
 
 </html>
