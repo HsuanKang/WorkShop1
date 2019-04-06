@@ -93,15 +93,15 @@
                             </li>
                             <li>
                                 <label>金額</label>
-                                <input id="book_price" type="text" style="text-align:right" onkeyup="this.value=this.value.replace(/[^\d\,]/g,'')" onchange="this.value=numberWithCommas(this.value)" />
+                                <input id="book_price" type="text" style="text-align:right" onkeyup="this.value=this.value.replace(/[^\d\,]/g,'')" onchange="this.value=numberWithCommas(this.value)" OnBlur="money()" />
                             </li>
                             <li>
                                 <label>數量</label>
-                                <input id="book_amount" type="text" style="text-align:right" onkeyup="this.value=this.value.replace(/[^\d\,]/g,'')" onchange="this.value=numberWithCommas(this.value)"/>
+                                <input id="book_amount" type="text" style="text-align:right" onkeyup="this.value=this.value.replace(/[^\d\,]/g,'')" onchange="this.value=numberWithCommas(this.value)" OnBlur="money()" />
                             </li>
                             <li>
                                 <span>
-                                    總計&nbsp;<span id="book_total" style="text-align:right">0</span> 元
+                                    總計&nbsp;<span id="book_total" style="text-align:right" onchange="this.value=money(this.value)" onkeyup="this.value=this.value.replace(/[^\d\,]/g,'')">0</span> 元
                                 </span>
                             </li>
                             <li class="uk-text-right">
@@ -134,6 +134,18 @@
     <script>
         function numberWithCommas(x) {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+    </script>
+
+    <script>
+        function money() {
+            var book_price = document.getElementById('book_price');
+            var book_amount = document.getElementById('book_amount');
+            var book_total = document.getElementById('book_total');
+            book_price.value.replace(/,/g,"");
+            alert(book_price.value);
+            book_amount.value.replace(/,/g,"");
+            book_total.innerText = parseInt(book_price.value) * parseInt(book_amount.value);
         }
     </script>
 
