@@ -100,8 +100,8 @@
                                 <input id="book_amount" type="text" style="text-align:right" onkeyup="this.value=this.value.replace(/[^\d\,]/g,'')" onchange="this.value=numberWithCommas(this.value)" OnBlur="money()" />
                             </li>
                             <li>
-                                <span>
-                                    總計&nbsp;<span id="book_total" style="text-align:right" onchange="this.value=money(this.value)" onkeyup="this.value=this.value.replace(/[^\d\,]/g,'')">0</span> 元
+                                <span style="float:right">
+                                    總計&nbsp;<span id="book_total" onchange="this.value=money(this.value)" onkeyup="this.value=this.value.replace(/[^\d\,]/g,'')">0</span> 元
                                 </span>
                             </li>
                             <li class="uk-text-right">
@@ -146,7 +146,10 @@
             var b = book_amount.value.replace(/,/g, "");
             a = parseInt(a);
             b = parseInt(b);
-            book_total.innerHTML = a * b;
+            var result = a * b;
+            result = String(result); 
+            numberWithCommas(result);
+            book_total.innerHTML = result;
         }
     </script>
 

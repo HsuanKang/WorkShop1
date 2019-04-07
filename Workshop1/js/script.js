@@ -122,7 +122,7 @@ $(document).ready(function () {
             { field: "BookCategory", title: "書籍種類", width: "100px" },
             { field: "BookAuthor", title: "作者", width: "120px" },
             { field: "BookBoughtDate", title: "購買日期", width: "120px", template: "#= kendo.toString(kendo.parseDate(BookBoughtDate, 'MM/dd/yyyy'), 'yyyy-MM-dd') #" },
-            { field: "BookDeliveredDate", title: "送達狀態", width: "120px", template: "#= BookDeliveredDate ? kendo.toString(new Date(BookDeliveredDate), 'yyyy-MM-dd') : '' #" },
+            { field: "BookDeliveredDate", title: "送達狀態", width: "120px", template: '<i class="fas fa-truck-moving"></i>' + "#= BookDeliveredDate ? kendo.toString(new Date(BookDeliveredDate), 'yyyy-MM-dd') : ''#" },
             { field: "BookPublisher", title: "發行公司", width: "120px" },
             { field: "BookPrice", title: "金額", width: "80px", attributes: { "class": "right-align", "data-boo": "foo" }, format: "{0:N0}" },
             { field: "BookAmount", title: "數量", width: "80px", attributes: { "class": "right-align", "data-boo": "foo" }, format: "{0:N0}" },
