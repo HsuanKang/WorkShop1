@@ -114,7 +114,7 @@
 
             <button type="button" id="add_book" class="k-button k-primary btn-add-book">新增書籍</button><br>
             <div style="background-color:#0044BB">
-                <input type='text' id='searchBox' style="background-color:#003C9D;border-style:none" class='k-textbox' placeholder="我想要找..." />
+                <input type='text' id='searchBox' style="background-color:#003C9D;border-style:none" class='k-textbox' onchange="this.value=numberWithCommas(this.value)" placeholder="我想要找..." />
             </div>
             <div id="book_grid">
             </div>
@@ -142,10 +142,11 @@
             var book_price = document.getElementById('book_price');
             var book_amount = document.getElementById('book_amount');
             var book_total = document.getElementById('book_total');
-            book_price.value.replace(/,/g,"");
-            alert(book_price.value);
-            book_amount.value.replace(/,/g,"");
-            book_total.innerText = parseInt(book_price.value) * parseInt(book_amount.value);
+            var a = book_price.value.replace(/,/g, "");
+            var b = book_amount.value.replace(/,/g, "");
+            a = parseInt(a);
+            b = parseInt(b);
+            book_total.innerHTML = a * b;
         }
     </script>
 
