@@ -17,6 +17,22 @@ function loadBookData() {
     }
 }
 
+$(function () {
+    loadBookData();
+    change();
+});
+
+
+function change() {
+    for (i = 0; i < bookData.length; i++) {
+        for (j = 0; j < bookCategoryList.length; j++) {
+            if (bookData[i].BookCategory == bookCategoryList[j].value) {
+                bookData[i].BookCategory = bookCategoryList[j].text;
+            }
+        }
+    }
+}
+
 
 $(document).ready(function () {
     var validator = $("#window").kendoValidator().data("kendoValidator");
@@ -27,14 +43,16 @@ $(document).ready(function () {
         onSelect: DatePicked,
         value: new Date(),
         format: "yyyy-MM-dd",
-        culture: "zh-TW"
+        culture: "zh-TW",
+        dateInput: true
     });
 
     $("#delivered_datepicker").kendoDatePicker({
         onSelect: DatePicked,
         value: new Date(),
         format: "yyyy-MM-dd",
-        culture: "zh-TW"
+        culture: "zh-TW",
+        dateInput: true
     });
 
     $("#book_category").kendoDropDownList({
@@ -56,8 +74,8 @@ $(document).ready(function () {
     }
 
     var DatePicked = function () {
-        var bought_datepicker = $("#bought_datepicker");
-        var delivered_datepicker = $("#delivered_datepicker");
+        var bought_datepicker = $("#bought_datepicker").val();
+        var delivered_datepicker = $("#delivered_datepicker").val();
         var b_d = bought_datepicker.datepicker("getDate");
         var d_d = delivered_datepicker.datepicker("getDate");
         if (d_d < b_d) {
@@ -119,13 +137,13 @@ $(document).ready(function () {
             },
             { field: "BookId", title: "書籍編號", width: "65px" },
             { field: "BookName", title: "書籍名稱", width: "250px" },
-            { field: "BookCategory", title: "書籍種類", width: "100px" },
+            { field: "BookCategory", title: "書籍種類", width: "150px" },
             { field: "BookAuthor", title: "作者", width: "120px" },
             { field: "BookBoughtDate", title: "購買日期", width: "120px", template: "#= kendo.toString(kendo.parseDate(BookBoughtDate, 'MM/dd/yyyy'), 'yyyy-MM-dd') #" },
-            { field: "BookDeliveredDate", title: "送達狀態", width: "120px", template: '<i class="fas fa-truck-moving"></i>' + "#= BookDeliveredDate ? kendo.toString(new Date(BookDeliveredDate), 'yyyy-MM-dd') : ''#" },
+            { field: "BookDeliveredDate", title: "送達狀態", width: "120px", template: '<i class="fas fa-truck-moving"></i>' + "#= BookDeliveredDate ? kendo.toString(new Date(BookDeliveredDate), 'yyyy-MM-dd') : ''#"},
             { field: "BookPublisher", title: "發行公司", width: "120px" },
-            { field: "BookPrice", title: "金額", width: "80px", attributes: { "class": "right-align", "data-boo": "foo" }, format: "{0:N0}" },
-            { field: "BookAmount", title: "數量", width: "80px", attributes: { "class": "right-align", "data-boo": "foo" }, format: "{0:N0}" },
+            { field: "BookPrice", title: "金額", width: "100px", attributes: { "class": "right-align", "data-boo": "foo" }, format: "{0:N0}" },
+            { field: "BookAmount", title: "數量", width: "100px", attributes: { "class": "right-align", "data-boo": "foo" }, format: "{0:N0}" },
             { field: "BookTotal", title: "總計", width: "100px", format: "{0}元", attributes: { "class": "right-align", "data-boo": "foo" }, format: "{0:N0}元" }],
         //editable: "incell"
     }).data("kendoGrid");
