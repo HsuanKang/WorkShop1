@@ -68,35 +68,35 @@
                     <form id="book_form">
                         <ul class="fieldlist">
                             <li>
-                                <div id="category" name="category" class="database"></div>
+                                <div id="category" name="category" class="database" data-bind="value: category"></div>
                             </li>
                             <li>
                                 <label class="required">圖書類別</label>
-                                <select id="book_category" name="book_category" required></select>
+                                <select id="book_category" name="book_category" data-bind="value: book_category" required></select>
                             </li>
                             <li>
                                 <label class="required">書名</label>
-                                <input id="book_name" name="book_name" type="text" required />
+                                <input id="book_name" name="book_name" type="text" data-bind="value: book_name" required />
                             </li>
                             <li>
                                 <label class="required">作者</label>
-                                <input id="book_author" name="book_author" type="text" required />
+                                <input id="book_author" name="book_author" type="text" data-bind="value: book_author" required />
                             </li>
                             <li>
                                 <label class="required">購買日期</label>
-                                <input id="bought_datepicker" name="bought_datepicker" required />
+                                <input id="bought_datepicker" name="bought_datepicker" data-bind="value: bought_datepicker" required />
                             </li>
                             <li>
                                 <label>送達日期</label>
-                                <input id="delivered_datepicker" name="delivered_datepicker" required />
+                                <input id="delivered_datepicker" name="delivered_datepicker" data-bind="value: delivered_datepicker" required />
                             </li>
                             <li>
                                 <label>金額</label>
-                                <input id="book_price" type="text" name="book_price" style="text-align:right" onkeyup="this.value=this.value.replace(/[^\d\,]/g,'')" onchange="this.value=numberWithCommas(this.value)" OnBlur="money()" />
+                                <input id="book_price" type="text" name="book_price" data-bind="value: book_price" style="text-align:right" onkeyup="this.value=this.value.replace(/[^\d\,]/g,'')" onchange="this.value=numberWithCommas(this.value)" OnBlur="money()" />
                             </li>
                             <li>
                                 <label>數量</label>
-                                <input id="book_amount" type="text" name="book_amount" style="text-align:right" onkeyup="this.value=this.value.replace(/[^\d\,]/g,'')" onchange="this.value=numberWithCommas(this.value)" OnBlur="money()" />
+                                <input id="book_amount" type="text" name="book_amount" data-bind="value: book_amount" style="text-align:right" onkeyup="this.value=this.value.replace(/[^\d\,]/g,'')" onchange="this.value=numberWithCommas(this.value)" OnBlur="money()" />
                             </li>
                             <li>
                                 <span style="float:right">
@@ -104,7 +104,7 @@
                                 </span>
                             </li>
                             <li class="uk-text-right">
-                                <button type="button" class="k-button k-primary btn-add-book" id="save_book">新增</button>
+                                <button type="button" class="k-button k-primary btn-add-book" id="save_book" data-bind="click: save_book">新增</button>
                             </li>
                         </ul>
                     </form>

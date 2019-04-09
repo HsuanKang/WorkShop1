@@ -120,6 +120,26 @@ $(document).ready(function () {
         }
     });
 
+    //var viewModel = kendo.observable({
+
+    //    save_book: function (e) {
+    //        e.preventDefault();
+
+    //        this.set("confirmed", true);
+    //    },
+    //    startOver: function () {
+    //        this.set("confirmed", false);
+    //        this.set("book_name", "");
+    //        this.set("book_author", "");
+    //        this.set("bought_datepicker", "");
+    //        this.set("delivered_datepicker", "");
+    //        this.set("book_price", "");
+    //        this.set("book_amount", "");
+    //    }
+    //});
+    //kendo.bind(alert("error"), viewModel);
+//});
+
     var book_grid = $("#book_grid").kendoGrid({
         dataSource: dataSource,
         height: 500,
