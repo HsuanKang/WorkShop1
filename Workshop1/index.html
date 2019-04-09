@@ -152,6 +152,14 @@
         }
     </script>
 
+    <script id="car_template" type="text/x-kendo-template">
+        #if(BookDeliveredDate !=null){#
+        <i id="car" title="#= BookDeliveredDate ? kendo.toString(new Date(BookDeliveredDate), 'yyyy-MM-dd') : ''#" class="fas fa-truck-moving"></i>
+        #}else{#
+
+        #}#
+    </script>
+
     <script type="text/javascript" src="data/book-data.js"></script>
     <script src="./js/jquery-2.1.4.min.js"></script>
     <script src="./js/kendo.all.min.js"></script>
