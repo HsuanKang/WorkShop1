@@ -35,12 +35,30 @@ function change() {
 
 
 $(document).ready(function () {
-    var validator = $("#window").kendoValidator().data("kendoValidator");
+    var validator = $("#window").kendoValidator({ //驗證格式
+        messages: {
+            required: "此欄為必填",
+            custom: "送達日期不可早於購買日期"
+        },
+        rules: {
+            custom: function (input) {
+                if (input.is("[id = delivered_datepicker]")) {
+                    var bought_datepicker = $("#bought_datepicker").val();
+                    var delivered_datepicker = $("#delivered_datepicker").val();
+                    if ((Date.parse(delivered_datepicker)).valueOf() > (Date.parse(bought_datepicker)).valueOf()) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        }
+    }).data("kendoValidator");
+
     var windowTemplate = kendo.template($("#windowTemplate").html());
     kendo.culture('zh-TW');
 
     $("#bought_datepicker").kendoDatePicker({
-        onSelect: DatePicked,
         value: new Date(),
         format: "yyyy-MM-dd",
         culture: "zh-TW",
@@ -48,7 +66,6 @@ $(document).ready(function () {
     });
 
     $("#delivered_datepicker").kendoDatePicker({
-        onSelect: DatePicked,
         value: new Date(),
         format: "yyyy-MM-dd",
         culture: "zh-TW",
@@ -73,16 +90,6 @@ $(document).ready(function () {
             .toggleClass("language", value == "language");
     }
 
-    var DatePicked = function () {
-        var bought_datepicker = $("#bought_datepicker").val();
-        var delivered_datepicker = $("#delivered_datepicker").val();
-        var b_d = bought_datepicker.datepicker("getDate");
-        var d_d = delivered_datepicker.datepicker("getDate");
-        if (d_d < b_d) {
-            delivered_datepicker.datepicker("setDate", '');
-            alert("送達日期不可早於購買日期");
-        }
-    }
 
     var dataSource = new kendo.data.DataSource({
         data: bookData,
@@ -105,7 +112,9 @@ $(document).ready(function () {
 
     $("#save_book").on("click", function () { //必填
         if (validator.validate()) {
-            save();
+            alert("success");
+        } else {
+            alert("error");
         }
     });
 
@@ -140,7 +149,7 @@ $(document).ready(function () {
             { field: "BookCategory", title: "書籍種類", width: "150px" },
             { field: "BookAuthor", title: "作者", width: "120px" },
             { field: "BookBoughtDate", title: "購買日期", width: "120px", template: "#= kendo.toString(kendo.parseDate(BookBoughtDate, 'MM/dd/yyyy'), 'yyyy-MM-dd') #" },
-            { field: "BookDeliveredDate", title: "送達狀態", width: "120px", template: '<i class="fas fa-truck-moving"></i>' + "#= BookDeliveredDate ? kendo.toString(new Date(BookDeliveredDate), 'yyyy-MM-dd') : ''#"},
+            { field: "BookDeliveredDate", title: "送達狀態", width: "120px", template: '<i class="fas fa-truck-moving"></i>' + "#= BookDeliveredDate ? kendo.toString(new Date(BookDeliveredDate), 'yyyy-MM-dd') : ''#" },
             { field: "BookPublisher", title: "發行公司", width: "120px" },
             { field: "BookPrice", title: "金額", width: "100px", attributes: { "class": "right-align", "data-boo": "foo" }, format: "{0:N0}" },
             { field: "BookAmount", title: "數量", width: "100px", attributes: { "class": "right-align", "data-boo": "foo" }, format: "{0:N0}" },

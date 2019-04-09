@@ -68,39 +68,39 @@
                     <form id="book_form">
                         <ul class="fieldlist">
                             <li>
-                                <div id="category" class="database"></div>
+                                <div id="category" name="category" class="database"></div>
                             </li>
                             <li>
                                 <label class="required">圖書類別</label>
-                                <select id="book_category" required></select>
+                                <select id="book_category" name="book_category" required></select>
                             </li>
                             <li>
                                 <label class="required">書名</label>
-                                <input id="book_name" type="text" required />
+                                <input id="book_name" name="book_name" type="text" required />
                             </li>
                             <li>
                                 <label class="required">作者</label>
-                                <input id="book_author" type="text" required />
+                                <input id="book_author" name="book_author" type="text" required />
                             </li>
                             <li>
                                 <label class="required">購買日期</label>
-                                <input id="bought_datepicker" required />
+                                <input id="bought_datepicker" name="bought_datepicker" required />
                             </li>
                             <li>
                                 <label>送達日期</label>
-                                <input id="delivered_datepicker" required />
+                                <input id="delivered_datepicker" name="delivered_datepicker" required />
                             </li>
                             <li>
                                 <label>金額</label>
-                                <input id="book_price" type="text" style="text-align:right" onkeyup="this.value=this.value.replace(/[^\d\,]/g,'')" onchange="this.value=numberWithCommas(this.value)" OnBlur="money()" />
+                                <input id="book_price" type="text" name="book_price" style="text-align:right" onkeyup="this.value=this.value.replace(/[^\d\,]/g,'')" onchange="this.value=numberWithCommas(this.value)" OnBlur="money()" />
                             </li>
                             <li>
                                 <label>數量</label>
-                                <input id="book_amount" type="text" style="text-align:right" onkeyup="this.value=this.value.replace(/[^\d\,]/g,'')" onchange="this.value=numberWithCommas(this.value)" OnBlur="money()" />
+                                <input id="book_amount" type="text" name="book_amount" style="text-align:right" onkeyup="this.value=this.value.replace(/[^\d\,]/g,'')" onchange="this.value=numberWithCommas(this.value)" OnBlur="money()" />
                             </li>
                             <li>
                                 <span style="float:right">
-                                    總計&nbsp;<span id="book_total" onchange="this.value=money(this.value)" onkeyup="this.value=this.value.replace(/[^\d\,]/g,'')">0</span> 元
+                                    總計&nbsp;<span id="book_total" name="book_total" onchange="this.value=money(this.value)" onkeyup="this.value=this.value.replace(/[^\d\,]/g,'')">0</span> 元
                                 </span>
                             </li>
                             <li class="uk-text-right">
